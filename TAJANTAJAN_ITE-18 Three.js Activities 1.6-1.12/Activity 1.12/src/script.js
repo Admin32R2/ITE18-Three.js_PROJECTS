@@ -37,7 +37,8 @@ const scene = new THREE.Scene()
 
 // Textures
 const textureLoader = new THREE.TextureLoader()
-const matcapTexture = textureLoader.load('textures/matcaps/8.png')
+const matcapTexture = textureLoader.load('textures/matcaps/3.png')
+const donutTexture = textureLoader.load('textures/matcaps/8.png')
 
 // Fonts
 const fontLoader = new FontLoader()
@@ -49,10 +50,11 @@ fontLoader.load(
         // Material
         // Shared by the text and all the donuts
         const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture })
+        const donutMaterial = new THREE.MeshMatcapMaterial({ matcap: donutTexture })
 
         // Text
         const textGeometry = new TextGeometry(
-            'Hello Three.js',
+            'Hello ITE 18 Three.js! rule',
             {
                 font: font,
                 size: 0.5,
@@ -75,9 +77,11 @@ fontLoader.load(
         // One geometry reused by all 100 meshes
         const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 32, 64)
 
-        for(let i = 0; i < 100; i++)
+        const numberOfDonuts = 250
+
+        for(let i = 0; i < numberOfDonuts; i++)
         {
-            const donut = new THREE.Mesh(donutGeometry, material)
+            const donut = new THREE.Mesh(donutGeometry, donutMaterial)
 
             // Random position, rotation and uniform scale
             donut.position.x = (Math.random() - 0.5) * 10
